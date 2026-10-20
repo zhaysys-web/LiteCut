@@ -1,0 +1,43 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    background-color: #f8fafc;
+    background-image: 
+      radial-gradient(at 10% 10%, rgba(224, 242, 254, 0.6) 0px, transparent 50%),
+      radial-gradient(at 90% 90%, rgba(252, 231, 243, 0.6) 0px, transparent 50%),
+      radial-gradient(at 50% 20%, rgba(240, 249, 255, 0.4) 0px, transparent 60%);
+    background-attachment: fixed;
+    background-size: cover;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+}
+
+/* 玻璃拟态样式类 */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.15), 0 4px 6px -2px rgba(244, 114, 182, 0.05);
+}
+
+.glass-card-hover {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.glass-card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 35px -10px rgba(56, 189, 248, 0.25), 0 6px 12px -2px rgba(244, 114, 182, 0.1);
+  border-color: rgba(255, 255, 255, 0.95);
+}
+
+/* 隐藏横向滚动条但保留滚动 */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
