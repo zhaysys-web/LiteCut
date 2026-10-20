@@ -1,0 +1,1 @@
+{"$schema":"https://openapi.vercel.sh/vercel.json","buildCommand":"npm run build","framework":"vite","headers":[{"headers":[{"key":"Cache-Control","value":"public, max-age=31536000, immutable"}],"source":"/assets/(.*)"}],"outputDirectory":"dist","rewrites":[{"destination":"https://livecraft-media.onrender.com/api/:path*","source":"/api/:path*"}]}
