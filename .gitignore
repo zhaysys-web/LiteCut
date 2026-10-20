@@ -3,3 +3,5 @@ dist/
 .DS_Store
 *.local
 deploy_refs.json
+# 本地 AI 协作工作稿，不属于项目源码
+LITECUT_MASTER_AI_PROMPT.md
