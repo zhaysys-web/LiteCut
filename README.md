@@ -2,6 +2,44 @@
 
 本项目为高颜值、多端自适应、功能真实可用的纯前端短视频处理工具箱，已完成全套核心架构与功能落地。
 
+- **线上站点**：https://litecut.vercel.app
+- **解析后端**：LiveCraft 媒体服务（`POST /api/parser`，见第四节）
+
+## 快速开始
+
+前置要求：Node.js ≥ 18（推荐 20）、npm。
+
+```bash
+git clone https://github.com/zhaysys-web/LiteCut.git
+cd LiteCut
+npm install        # 或 npm ci（按 package-lock.json 精确还原）
+npm run dev        # http://localhost:3000，/api 自动代理到解析后端，开箱可用
+npm run build      # 类型检查 + 生产构建，产物在 dist/
+npm run preview    # 本地预览生产构建（同样带 /api 代理）
+```
+
+无需任何密钥或环境变量即可跑通全部功能。唯一可选变量见 `.env.example`
+（`VITE_PARSER_API_BASE`，仅在不用同源代理、改为直连解析后端时才需要）。
+
+## 部署指南（Vercel）
+
+方式一：连接 GitHub 仓库自动部署（推荐）
+
+1. 登录 vercel.com → Add New → Project → Import 本仓库。
+2. Framework Preset 选 Vite（或 Other 后手动填 Build Command `npm run build`、Output Directory `dist`）。
+3. 无需配置任何环境变量。直接 Deploy。
+4. 仓库根目录的 `vercel.json` 已包含 `/api/*` → 解析后端的重写规则，部署后解析功能即通。
+
+方式二：文件直传部署（当前线上站点的方式）：用 Vercel API/CLI 上传构建文件并创建
+production deployment，效果与方式一相同，区别是更新时需手动重新上传。
+
+后端说明：解析后端是独立仓库（LiveCraft 的 media-service，部署在 Render），
+本仓库不包含后端代码与其环境变量。若改用直连模式
+（`VITE_PARSER_API_BASE`），需先在 Render 后端把本站域名加入环境变量
+`CORS_ORIGINS`（逗号分隔），再重新构建前端。
+
+CI：`.github/workflows/build.yml` 在每次 push / PR 到 main 时执行 `npm ci && npm run build` 做构建校验。
+
 ---
 
 ## 一、 技术栈概览
